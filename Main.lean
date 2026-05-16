@@ -7,3 +7,6 @@ def myReverse {α : Type} : List α → List α
 theorem reverse_nil : myReverse ([] : List Nat) = [] := by rfl
 
 theorem reverse_singleton (x : Nat) : myReverse [x] = [x] := by rfl
+
+theorem reverse_append_nil (xs : List Nat) : myReverse (xs ++ []) = myReverse xs := by
+ rw [List.append_nil]
