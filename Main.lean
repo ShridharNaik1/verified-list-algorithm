@@ -5,3 +5,5 @@ def myReverse {α : Type} : List α → List α
 #eval myReverse [1, 2, 3, 4, 5]
 
 theorem reverse_nil : myReverse ([] : List Nat) = [] := by rfl
+
+theorem reverse_singleton (x : Nat) : myReverse [x] = [x] := by rfl
