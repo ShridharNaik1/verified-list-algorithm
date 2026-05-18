@@ -17,3 +17,11 @@ theorem reverse_append (xs ys : List Nat) : myReverse (xs ++ ys) = myReverse ys 
        rw [List.nil_append, myReverse, List.append_nil]
     | cons x xs ih =>
        rw [List.cons_append, myReverse, ih, List.append_assoc, myReverse]
+
+theorem reverse_reverse (xs : List Nat) : myReverse (myReverse xs) = xs := by
+    induction xs with
+    | nil =>
+       rfl
+    | cons x xs ih =>
+       rw [myReverse, reverse_append, ih, reverse_singleton]
+       rfl
