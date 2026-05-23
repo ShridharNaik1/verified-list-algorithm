@@ -25,3 +25,6 @@ theorem reverse_reverse (xs : List Nat) : myReverse (myReverse xs) = xs := by
     | cons x xs ih =>
        rw [myReverse, reverse_append, ih, reverse_singleton]
        rfl
+
+theorem reverse_cons (x : Nat) (xs : List Nat) : myReverse (x :: xs) = myReverse xs ++ [x] := by
+    rfl
