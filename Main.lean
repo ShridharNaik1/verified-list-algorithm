@@ -36,3 +36,10 @@ theorem reverse_length (xs : List Nat) : (myReverse xs).length = xs.length := by
     | cons x xs ih =>
        rw [myReverse, List.length_append, List.length_singleton, ih]
        rfl
+
+theorem append_length (xs ys : List Nat) : (xs ++ ys).length = xs.length + ys.length := by
+    induction xs with
+    | nil =>
+       rw [List.nil_append, List.length_nil, Nat.zero_add]
+    | cons x xs ih =>
+       rw [List.cons_append, List.length_cons, ih, List.length_cons, Nat.succ_add]
