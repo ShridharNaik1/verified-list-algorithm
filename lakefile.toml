@@ -1,10 +1,8 @@
 name = "verified-list-algorithms"
 version = "0.1.0"
-defaultTargets = ["verified-list-algorithms"]
+
 
 [[lean_lib]]
 name = "VerifiedListAlgorithms"
 
-[[lean_exe]]
-name = "verified-list-algorithms"
-root = "Main"
+
