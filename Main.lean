@@ -67,3 +67,6 @@ theorem revAux_correct {α} (xs acc : List α) : revAux xs acc = myReverse xs ++
     | cons x xs ih =>
        rw [revAux, ih (x :: acc), myReverse, List.append_assoc]
        simp
+
+theorem fastReverse_correct {α} (xs : List α) : fastReverse xs = myReverse xs := by
+      rw [fastReverse, revAux_correct, List.append_nil]
