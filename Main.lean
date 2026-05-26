@@ -43,3 +43,10 @@ theorem append_length (xs ys : List Nat) : (xs ++ ys).length = xs.length + ys.le
        rw [List.nil_append, List.length_nil, Nat.zero_add]
     | cons x xs ih =>
        rw [List.cons_append, List.length_cons, ih, List.length_cons, Nat.succ_add]
+
+theorem reverse_member (x : Nat) (xs : List Nat) : x ∈ myReverse xs ↔ x ∈ xs := by
+    induction xs with
+    | nil =>
+       simp [myReverse]
+    | cons y ys ih =>
+       simp [myReverse, List.mem_append, ih, List.mem_cons, Or.comm]
