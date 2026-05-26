@@ -29,7 +29,7 @@ theorem reverse_reverse {α} (xs : List α) : myReverse (myReverse xs) = xs := b
 theorem reverse_cons {α} (x : α) (xs : List α) : myReverse (x :: xs) = myReverse xs ++ [x] := by
     rfl
 
-theorem reverse_length {α} (xs : List α) : (myReverse xs).length = xs.length := by
+theorem reverse_length (xs : List Nat) : (myReverse xs).length = xs.length := by
     induction xs with
     | nil =>
        rfl
@@ -37,14 +37,14 @@ theorem reverse_length {α} (xs : List α) : (myReverse xs).length = xs.length :
        rw [myReverse, List.length_append, List.length_singleton, ih]
        rfl
 
-theorem append_length {α} (xs ys : List α) : (xs ++ ys).length = xs.length + ys.length := by
+theorem append_length (xs ys : List Nat) : (xs ++ ys).length = xs.length + ys.length := by
     induction xs with
     | nil =>
        rw [List.nil_append, List.length_nil, Nat.zero_add]
     | cons x xs ih =>
        rw [List.cons_append, List.length_cons, ih, List.length_cons, Nat.succ_add]
 
-theorem reverse_member {α} (x : α) (xs : List α) : x ∈ myReverse xs ↔ x ∈ xs := by
+theorem reverse_member (x : Nat) (xs : List Nat) : x ∈ myReverse xs ↔ x ∈ xs := by
     induction xs with
     | nil =>
        simp [myReverse]
