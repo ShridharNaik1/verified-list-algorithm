@@ -50,3 +50,20 @@ theorem reverse_member (x : Nat) (xs : List Nat) : x ∈ myReverse xs ↔ x ∈ 
        simp [myReverse]
     | cons y ys ih =>
        simp [myReverse, List.mem_append, ih, List.mem_cons, Or.comm]
+
+def revAux {α : Type} : List α → List α → List α
+| [], acc => acc
+| x :: xs, acc => revAux xs (x :: acc)
+
+def fastReverse {α : Type} (xs : List α) : List α :=
+    revAux xs []
+
+#eval fastReverse [1, 2, 3, 4, 5]
+
+theorem revAux_correct {α} (xs acc : List α) : revAux xs acc = myReverse xs ++ acc := by
+    induction xs generalizing acc with
+    | nil =>
+       simp [revAux, myReverse]
+    | cons x xs ih =>
+       rw [revAux, ih (x :: acc), myReverse, List.append_assoc]
+       simp
